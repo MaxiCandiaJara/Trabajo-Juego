@@ -13331,6 +13331,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 711082139101724787, guid: 0cffa732a7ba2d847a181c679cb647cd, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2767910092003034603, guid: 0cffa732a7ba2d847a181c679cb647cd, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -13459,7 +13463,7 @@ PolygonCollider2D:
     - - {x: 5.994606, y: 11.377756}
       - {x: -16.034258, y: 11.589189}
       - {x: -14.907073, y: -9.068111}
-      - {x: 36.828323, y: -9.1939945}
+      - {x: 37.09858, y: -9.464245}
       - {x: 37.40732, y: -4.3449225}
       - {x: 37.86853, y: 2.4962862}
       - {x: 37.542633, y: 11.383406}
