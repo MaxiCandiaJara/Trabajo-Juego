@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     bool inpunch = false;
     bool death = false;
     int vidas = 5;
-    int llaves = 0;
+    public int llaves = 0;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
