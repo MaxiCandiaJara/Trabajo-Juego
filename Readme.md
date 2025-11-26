@@ -156,6 +156,37 @@ My project/
 
 ---
 
+## ❓ Preguntas Frecuentes (FAQ)
+
+### **¿Necesito instalar Cinemachine u otros paquetes manualmente en otro PC?**
+**¡No!** El repositorio ya incluye toda la información necesaria. Cuando clones el proyecto y lo abras en Unity:
+
+1. Unity lee el archivo `Packages/manifest.json` (que SÍ está en el repositorio)
+2. Descarga automáticamente todos los paquetes necesarios:
+   - ✅ **Cinemachine** (v3.1.5)
+   - ✅ **Input System** (v1.14.2)
+   - ✅ **Universal Render Pipeline** (v17.0.4)
+   - ✅ Y todos los demás paquetes del proyecto
+3. Los instala automáticamente en tu PC
+
+**No necesitas hacer nada**, Unity se encarga de todo. Solo asegúrate de tener conexión a internet la primera vez que abras el proyecto.
+
+### **¿Qué archivos se suben a GitHub?**
+- ✅ **Assets/** - Todos tus scripts, escenas, prefabs, etc.
+- ✅ **ProjectSettings/** - Configuración del proyecto
+- ✅ **Packages/manifest.json** - Lista de paquetes (incluye Cinemachine)
+- ✅ **Packages/packages-lock.json** - Versiones exactas de paquetes
+
+### **¿Qué NO se sube a GitHub?**
+- ❌ **Library/** - Cache de Unity (se regenera automáticamente)
+- ❌ **Temp/** - Archivos temporales
+- ❌ **Logs/** - Registros de Unity
+- ❌ **obj/** - Archivos de compilación
+
+Estos archivos están en el `.gitignore` porque son muy pesados y se generan automáticamente.
+
+---
+
 ## 📞 Soporte
 
 Si tienes problemas:
