@@ -44,5 +44,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Capa 1
+    uniqueID: 705180305
+    locked: 0
   m_RenderingLayers:
   - Default
