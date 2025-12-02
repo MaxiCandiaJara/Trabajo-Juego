@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public Animator an;
 
+    public AudioSource au;
+    public AudioClip[] effects;
+
     float x;
     bool grounded = false;
     bool inpunch = false;
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         rb.GetComponent<Rigidbody2D>();
         an.GetComponent<Animator>();
+        au.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -72,6 +76,10 @@ public class PlayerController : MonoBehaviour
             {
                 rb.AddForce(new Vector2(0, jump), ForceMode2D.Impulse);
                 an.SetTrigger("Jump");
+                AudioClip efecto = BuscarCancion("Jump");
+
+                au.clip = efecto;
+                au.Play();
             }
 
         }
@@ -104,7 +112,12 @@ public class PlayerController : MonoBehaviour
         }
 
         if (vidas <= 0 && death == false)
-        {
+        {   
+            
+            AudioClip efecto = BuscarCancion("Death");
+
+            au.clip = efecto;
+            au.Play();
             
             death = true;
             an.SetTrigger("Death");
@@ -127,14 +140,29 @@ public class PlayerController : MonoBehaviour
             
             Destroy(collision.gameObject);
             llaves += 1;
+            
+            AudioClip efecto = BuscarCancion("Key");
 
+            au.clip = efecto;
+            au.Play();
 
         }
 
 
 
     }
-
+    
+    private AudioClip BuscarCancion(string nombreCancion)
+    {
+        foreach (AudioClip cancion in effects)
+        {
+            if (cancion != null && cancion.name.Equals(nombreCancion, System.StringComparison.OrdinalIgnoreCase))
+            {
+                return cancion;
+            }
+        }
+        return null;
+    }
     void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.tag == "Floor")
@@ -145,12 +173,19 @@ public class PlayerController : MonoBehaviour
 
 
     public void Golpe()
-    {
-        
-        an.SetTrigger("Hurt");
-        inpunch = true;
-        vidas -= 1;
-        Invoke("Recuperarse", 0.25f);
+    {   
+        if(!death){
+
+            AudioClip efecto = BuscarCancion("Pain");
+            au.clip = efecto;
+            au.Play();
+
+            an.SetTrigger("Hurt");
+            inpunch = true;
+            vidas -= 1;
+            Invoke("Recuperarse", 0.25f);
+        }
+    
 
 
     }
