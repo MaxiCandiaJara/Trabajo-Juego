@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     float x;
     bool grounded = false;
     bool inpunch = false;
-    bool death = false;
+    public bool death = false;
     int vidas = 5;
     public int llaves = 0;
 
@@ -37,14 +37,6 @@ public class PlayerController : MonoBehaviour
             x = Input.GetAxis("Horizontal");
             Mover();
             Animar();
-        }
-
-        if (death)
-        {
-            
-            x = 0;
-        
-
         }
 
 
@@ -121,6 +113,9 @@ public class PlayerController : MonoBehaviour
             
             death = true;
             an.SetTrigger("Death");
+
+            rb.linearVelocity = new Vector2(0,0);
+
         }
 
         
@@ -194,6 +189,20 @@ public class PlayerController : MonoBehaviour
     {
         
         inpunch = false;
+
+    }
+
+    public void Revivir()
+    {
+            
+        vidas = 5;
+        death = false;
+        grounded = false; // Asegúrate de que el personaje no esté "en el suelo"
+        an.SetTrigger("Respawn");
+
+        rb.linearVelocity = Vector2.zero; // Resetea cualquier velocidad acumulada
+        rb.angularVelocity = 0; // Si hay alguna rotación, la reseteamos
+
 
     }
 

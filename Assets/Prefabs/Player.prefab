@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3999615242654787908}
   - component: {fileID: 4220684112396340082}
   - component: {fileID: 3521596902657343983}
+  - component: {fileID: 4136096434430659721}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -212,6 +213,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fe2e82518c1d1ed44b1aa65a22d56195, type: 3}
   - {fileID: 8300000, guid: 15df5cbe2adef8d48915e9ffefd4aa78, type: 3}
   - {fileID: 8300000, guid: 0d46350449771824da859aeb2f6bf668, type: 3}
+  death: 0
   llaves: 0
 --- !u!50 &2767910092003034603
 Rigidbody2D:
@@ -354,3 +356,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.4544656, y: 2.0998163}
   m_EdgeRadius: 0
+--- !u!114 &4136096434430659721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7836071809688421900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d3bbbfc4ccac349bca761c29886edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  me: {fileID: 711082139101724787}
+  t: {fileID: 0}
