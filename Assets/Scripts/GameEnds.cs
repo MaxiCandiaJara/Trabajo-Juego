@@ -1,12 +1,10 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
-{   
+public class GameEnds : MonoBehaviour
+{
 
-    public string scena;
-
+    public GameObject panel;
+    public MusicController musica;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,23 +18,17 @@ public class SceneController : MonoBehaviour
     }
 
 
-
     void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if (collision.tag == "Player")
         {
             
-           Cargar(scena);
+            panel.SetActive(true);
+            musica.PausarMusica();
 
         }
+
+
     }
-
-
-    public void Cargar(String Escena)
-    {
-        
-        SceneManager.LoadScene(Escena);
-    }
-
-
 }
