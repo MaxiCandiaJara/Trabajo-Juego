@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     int vidas = 5;
     public int llaves = 0;
 
+    List<GameObject> allKeys = new List<GameObject>();
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +29,11 @@ public class PlayerController : MonoBehaviour
         rb.GetComponent<Rigidbody2D>();
         an.GetComponent<Animator>();
         au.GetComponent<AudioSource>();
+
+        GameObject[] keysInScene = GameObject.FindGameObjectsWithTag("Key");
+        allKeys.AddRange(keysInScene);
     }
+
 
     // Update is called once per frame
     void Update()
@@ -130,18 +136,19 @@ public class PlayerController : MonoBehaviour
             grounded = true;
         }
 
-        if(collision.tag == "Key")
+        if (collision.tag == "Key")
         {
-            
-            Destroy(collision.gameObject);
-            llaves += 1;
-            
-            AudioClip efecto = BuscarCancion("Key");
+            collision.GetComponent<SpriteRenderer>().enabled = false;
+            collision.GetComponent<Collider2D>().enabled = false;
 
+            llaves += 1;
+            Debug.Log("Llaves actuales: " + llaves);
+
+            AudioClip efecto = BuscarCancion("Key");
             au.clip = efecto;
             au.Play();
-
         }
+
 
 
 
@@ -194,18 +201,34 @@ public class PlayerController : MonoBehaviour
 
     public void Revivir()
     {
-            
         vidas = 5;
+        llaves = 0;
         death = false;
-        grounded = false; // Asegúrate de que el personaje no esté "en el suelo"
+        grounded = false;
+
         an.SetTrigger("Respawn");
 
-        rb.linearVelocity = Vector2.zero; // Resetea cualquier velocidad acumulada
-        rb.angularVelocity = 0; // Si hay alguna rotación, la reseteamos
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0;
 
+        foreach (GameObject key in allKeys)
+        {
+            if (key != null)
+            {
+                key.GetComponent<SpriteRenderer>().enabled = true;
+                key.GetComponent<Collider2D>().enabled = true;
+            }
+        }
 
+        WinController barrier = FindFirstObjectByType<WinController>();
+        if (barrier != null)
+        {
+            barrier.ResetBarrier();
+        }
+
+        Debug.Log("Revivir ejecutado");
     }
 
 
-
 }
+

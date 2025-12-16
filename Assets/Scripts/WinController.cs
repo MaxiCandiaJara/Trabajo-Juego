@@ -3,19 +3,47 @@ using UnityEngine;
 public class WinController : MonoBehaviour
 {
     public PlayerController playerController;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private Vector3 startPosition;
+    private bool opened = false;
+
+    public float openHeight = 9f;
+
+
     void Start()
     {
         playerController = FindFirstObjectByType<PlayerController>();
+        startPosition = transform.position;
+    }
+
+    void Update()
+    {
+        if (playerController == null) return;
+
+        if (playerController.llaves >= 3 && !opened)
+        {
+            opened = true;
+        }
+
+        if (opened)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                startPosition + Vector3.up * openHeight,
+                5f * Time.deltaTime
+            );
+        }
+        else
+        {
+            transform.position = startPosition;
+        }
+
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ResetBarrier()
     {
-        if (playerController.llaves >= 3)
-        {
-            transform.position += Vector3.up * 5f * Time.deltaTime;
-        }
+        opened = false;
+        transform.position = startPosition;
     }
 }
