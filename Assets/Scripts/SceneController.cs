@@ -38,5 +38,10 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(Escena);
     }
 
+    public void Salir()
+    {
+        
+        Application.Quit();
 
+    }
 }
